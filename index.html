@@ -6,15 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="css/jquery.mobile-1.3.2.min.css" rel="stylesheet" />
 </head>
-<body>
-    <div data-role="page" >
+<body onload="onLoad()">
+    <div data-role="page">
         <div data-theme="b" data-role="header">
             <h3>Mobilizm</h3>
         </div>
         <div data-role="content">
             <div data-role="fieldcontain">
                 <ul data-role="listview">
-                    <li ><a href="Reservation.html">Rezervasyon Yap</a></li>
+                    <li><a href="Reservation.html">Rezervasyon Yap</a></li>
                     <li><a href="#">Rezervasyonlarımı Gör</a></li>
                     <li><a href="#">Bilgilerim</a></li>
                 </ul>
@@ -26,6 +26,18 @@
     </div>
     <script src="js/jquery.js"></script>
     <script src="js/jquery.mobile-1.3.2.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/phonegap.js"></script>
+    <script type="text/javascript" charset="utf-8">
 
+        function onLoad() {
+            document.addEventListener("deviceready", onDeviceReady, false);
+        }
+
+        // PhoneGap is loaded and it is now safe to make calls PhoneGap methods
+        //
+        function onDeviceReady() {
+            alert("ok");
+        }
+    </script>
 </body>
 </html>
