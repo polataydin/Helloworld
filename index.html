@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hello World</title>
+    
+</head>
+<body>
+    <button id="silly">Fuck it</button>
+    <button id="clear">Clear it</button>
+    <div id="results"></div>
+
+    <script src="js/zepto.js"></script>
+    <script src="js/library.js"></script>
+    <script>
+
+        $('#silly').click(function () {
+            SILLY.DoIt( $('#results') );
+        });
+        $('#clear').click(function () {
+            $('#results').html(' ');
+        });
+       
+    </script>
+</body>
+</html>
