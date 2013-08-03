@@ -26,18 +26,11 @@
     </div>
     <script src="js/jquery.js"></script>
     <script src="js/jquery.mobile-1.3.2.js"></script>
-    <script type="text/javascript" charset="utf-8" src="js/phonegap.js"></script>
-    <script type="text/javascript" charset="utf-8">
-
-        function onLoad() {
-            document.addEventListener("deviceready", onDeviceReady, false);
-        }
-
-        // PhoneGap is loaded and it is now safe to make calls PhoneGap methods
-        //
-        function onDeviceReady() {
-            alert("ok");
-        }
+    <script src="js/Cordova.js"></script>
+    <script src="js/index.js"></script>
+    <script type="text/javascript">
+        app.initialize();
+       
     </script>
 </body>
 </html>
