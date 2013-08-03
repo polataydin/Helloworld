@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+    <widget xmlns = "http://www.w3.org/ns/widgets"
+        xmlns:gap = "http://phonegap.com/ns/1.0"
+        id        = "HelloWorld"
+        versionCode="1" 
+        version   = "1.0.0">
+
+    <!-- versionCode is optional and Android only -->
+
+    <name>PhoneGap Example</name>
+
+    <description>
+        Hello World
+    </description>
+
+    <author href="#" email="polattt@gmail.com">
+        Polat Aydın
+    </author>	
+	
+<gap:splash src="css/splash/mobilizm.png"   gap:platform="ios" width="320"  height="480"  /><!-- Regular iPhone4 -->
+<gap:splash src="css/splash/mobilizm.png"   gap:platform="ios" width="640"  height="960"  /><!-- Retina iPhone4 -->
+<gap:splash src="css/splash/mobilizm.png"  gap:platform="ios" width="640"  height="1136" /><!-- iPhone5 -->
+<gap:splash src="css/splash/mobilizm.png"  gap:platform="ios" width="768"  height="1004" /><!-- iPad Portrait -->
+<gap:splash src="css/splash/mobilizm.png"  gap:platform="ios" width="1024" height="748"  /><!-- iPad Landscape -->
+
+<!-- Retina iPads: Requires PhoneGap 2.5.0 or higher -->
+<gap:splash src="css/splash/mobilizm.png" gap:platform="ios" width="1536" height="2008" /><!-- Portrait -->
+<gap:splash src="css/splash/mobilizm.png" gap:platform="ios" width="2048" height="1496" /><!-- Landscape -->
+
+<gap:splash src="css/splash/mobilizm.png" gap:platform="android" gap:density="ldpi"  width="320" height="426" />
+<gap:splash src="css/splash/mobilizm.png" gap:platform="android" gap:density="mdpi"  width="320" height="470" />
+<gap:splash src="css/splash/mobilizm.png" gap:platform="android" gap:density="hdpi"  width="480" height="640" />
+<gap:splash src="css/splash/mobilizm.png" gap:platform="android" gap:density="xhdpi" width="720" height="960" />
+
+</widget>
+
