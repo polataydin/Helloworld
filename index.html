@@ -5,6 +5,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="css/jquery.mobile-1.3.2.min.css" rel="stylesheet" />
+    
+   
 </head>
 <body onload="onLoad()">
     <div data-role="page">
@@ -20,12 +22,30 @@
                 </ul>
             </div>
         </div>
-        <div data-theme="b" data-role="footer" data-position="fixed">
-            <h3>Mobilizm</h3>
+        <div data-role="footer" data-position="fixed">
+        <div data-role="navbar" data-iconpos="top">
+            <ul>
+                <li><a href="#"  data-icon="delete">One</a></li>
+                <li><a href="#">Two</a></li>
+                <li><a href="#">Three</a></li>
+            </ul>
         </div>
+  
     </div>
+    </div>   
+
     <script src="js/jquery.js"></script>
     <script src="js/jquery.mobile-1.3.2.js"></script>
-   
+    <script>
+        debugger;
+        localStorage.setItem("name", "Polat"); //saves to the database, key/value
+
+        alert(localStorage.getItem("name"));
+        //$(document).bind("pageinit", function () {
+        //    alert("ok");
+        //    $.mobile.changePage("Reservation.html", { transition: "slideup" });
+
+        //});
+    </script>
 </body>
 </html>
