@@ -57,14 +57,17 @@
     <script src="js/jquery.js"></script>
     <script src="js/jquery.mobile-1.3.2.js"></script>
     <script>
-
+        
         $('#myhref').click(function () {
+           
             localStorage.setItem("name", "Polat");
-        });
-
-        if (localStorage.getItem("name") != null) {
             $.mobile.changePage("Main.html", { transition: "flip" });
-        }
+        });
+        $(document).bind("pageinit", function () {
+            if (localStorage.getItem("name") != null) {
+                $.mobile.changePage("Main.html", { transition: "flip" });
+            }
+        });
     </script>
 </body>
 </html>
