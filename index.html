@@ -5,47 +5,66 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="css/jquery.mobile-1.3.2.min.css" rel="stylesheet" />
-    
-   
-</head>
-<body onload="onLoad()">
-    <div data-role="page">
-        <div data-theme="b" data-role="header">
-            <h3>Mobilizm</h3>
-        </div>
-        <div data-role="content">
-            <div data-role="fieldcontain">
-                <ul data-role="listview">
-                    <li><a href="Reservation.html">Rezervasyon Yap</a></li>
-                    <li><a href="#">Rezervasyonlarımı Gör</a></li>
-                    <li><a href="#">Bilgilerim</a></li>
-                </ul>
-            </div>
-        </div>
-        <div data-role="footer" data-position="fixed">
-        <div data-role="navbar" data-iconpos="top">
-            <ul>
-                <li><a href="#"  data-icon="delete">One</a></li>
-                <li><a href="#">Two</a></li>
-                <li><a href="#">Three</a></li>
-            </ul>
-        </div>
-  
-    </div>
-    </div>   
+    <style>
+        div.ui-input-text {
+            border-radius: 0;
+        }
 
+        div.ui-input-search {
+            border-radius: 0;
+        }
+
+        textarea.ui-input-text {
+            border-radius: 0;
+        }
+
+        div.ui-input-text {
+            box-shadow: none;
+        }
+
+        div.ui-input-search {
+            box-shadow: none;
+        }
+
+        textarea.ui-input-text {
+            box-shadow: none;
+        }
+
+        .ui-controlgroup-vertical {
+            border-radius: 0;
+        }
+
+        div.ui-input-text {
+            background-image: none;
+            margin: 0 0;
+        }
+    </style>
+</head>
+<body>
+    <div data-theme="b" data-role="header">
+        <h3>Mobilizm Login Screen</h3>
+    </div>
+    <div data-role="content">
+
+        <div data-role="controlgroup">
+            <input type="text" id="username" placeholder="User Name">
+            <input type="text" id="password" placeholder="Password">
+        </div>
+        <div data-role="controlgroup">
+            <a href="#" id="myhref" data-role="button" style="background: red; color: white">Login</a>
+        </div>
+    </div>
     <script src="js/jquery.js"></script>
     <script src="js/jquery.mobile-1.3.2.js"></script>
     <script>
-        debugger;
-        localStorage.setItem("name", "Polat"); //saves to the database, key/value
 
-        alert(localStorage.getItem("name"));
-        //$(document).bind("pageinit", function () {
-        //    alert("ok");
-        //    $.mobile.changePage("Reservation.html", { transition: "slideup" });
+        $('#myhref').click(function () {
+            localStorage.setItem("name", "Polat");
+        });
 
-        //});
+        if (localStorage.getItem("name") != null) {
+            $.mobile.changePage("Main.html", { transition: "flip" });
+        }
     </script>
 </body>
 </html>
