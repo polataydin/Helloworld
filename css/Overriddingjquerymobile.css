@@ -1,0 +1,89 @@
+﻿/* Written by Polat Aydın 5.8.2013*/
+
+
+a[data-role="button"][data-theme="reset"].mobilizmred .ui-btn-inner {
+    background: #df1022; /*-webkit-linear-gradient(top, #6A6A6A 0%,#313131 49%,black 50%,black 100%);*/
+}
+
+a[data-role="button"][data-theme="reset"].mobilizmred .ui-btn-text {
+    text-shadow: 0 1px 0 #444444;
+    font-weight: bold;
+}
+/* reset buttons */
+a[data-role="button"][data-theme="reset"] {
+    box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    -moz-box-shadow: none !important;
+    text-decoration: none;
+}
+
+    a[data-role="button"][data-theme="reset"] .ui-btn-inner {
+        color: white;
+        overflow: visible;
+        text-shadow: 0 -1px 0 #000;
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        border: 1px solid #333;
+        background: #333;
+        box-shadow: 0 1px 0 rgba(255,255,255, 0.25), inset 0 1px 1px rgba(0,0,0, 0.2);
+        -webkit-box-shadow: 0 1px 0 rgba(255,255,255, 0.25), inset 0 1px 1px rgba(0,0,0, 0.2);
+        -moz-box-shadow: 0 1px 0 rgba(255,255,255, 0.25), inset 0 1px 1px rgba(0,0,0, 0.2);
+    }
+
+    /* remove button background */
+    a[data-role="button"][data-theme="reset"].app-theme-none .ui-btn-inner {
+        color: #222;
+        background: none !important;
+        border: none !important;
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+
+        /* remove icon background */
+        a[data-role="button"][data-theme="reset"].app-theme-none .ui-btn-inner .ui-icon {
+            background-color: rgba(0, 0, 0, 0);
+            border: none;
+            box-shadow: none;
+        }
+
+
+a[data-theme="reset"][data-role="button"].notext .ui-btn-text {
+    display: none;
+}
+
+/* when buttons are inside a controlgroup */
+.ui-controlgroup a[data-role="button"][data-theme="reset"] {
+    border-right: none;
+    margin-left: 2px;
+}
+
+    .ui-controlgroup a[data-role="button"][data-theme="reset"] .ui-btn-inner {
+    }
+    /* adjust inner radius and left padding */
+    .ui-controlgroup a[data-role="button"][data-theme="reset"] .ui-btn-inner {
+        padding-left: 35px !important;
+        border-right: none !important;
+    }
+
+    .ui-controlgroup a[data-role="button"][data-theme="reset"]:first-child .ui-btn-inner {
+    }
+
+    .ui-controlgroup a[data-role="button"][data-theme="reset"]:last-child .ui-btn-inner {
+        border-right: 1px solid #333 !important;
+    }
+/*For Placeholders!*/
+input::-webkit-input-placeholder {
+    color: #000;
+}
+
+input::-moz-placeholder {
+    color: #000;
+}
+
+input:-moz-placeholder { /* Older versions of Firefox */
+    color: #000;
+}
+
+input:-ms-input-placeholder {
+    color: #000;
+}
