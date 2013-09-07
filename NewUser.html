@@ -23,27 +23,34 @@
                 myType.MobilePhone = $("#cellphone").val();
                 typesArray.push(myType);
 
-                $.support.cors = true;
-                $.ajax({
-
-                    type: "GET",
-                    contentType: "application/json;charset=utf-8",
-                    datatype: "json",
-                    url: "http://212.109.96.121:5556/Mobile/MobilizmService.svc/CreateCustomer",
-                    async: false,
-                    data: { customers: JSON.stringify(typesArray), origin: 167440003, status: 167440001 },
-                    cache: false,
-                    processData: true,
-                    beforeSend: function (XMLHttpRequest) {
-                        XMLHttpRequest.setRequestHeader("Accept", "application/json");
-                    },
-                    success: function (data) {//On Successfull service call      
-                        alert("Kaydınız alınmıştır");
-                    },
-                    error: function (XMLHttpRequest, textStatus, errorThrown) {
-                        alert("işlem yapılırken hata oluştu");
-                    }
+                $.getJSON("http://212.109.96.121:5556/Mobile/MobilizmService.svc/CreateCustomer?callback=?", { customers: JSON.stringify(typesArray), origin: 167440003, status: 167440001 })
+                .done(function (json) {
+                    alert("ok");
+                })
+                .fail(function (jqxhr, textStatus, error) {
+                    alert("ok");
                 });
+                //$.support.cors = true;
+                //$.ajax({
+
+                //    type: "GET",
+                //    contentType: "application/json;charset=utf-8",
+                //    datatype: "json",
+                //    url: "http://212.109.96.121:5556/Mobile/MobilizmService.svc/CreateCustomer",
+                //    async: false,
+                //    data: { customers: JSON.stringify(typesArray), origin: 167440003, status: 167440001 },
+                //    cache: false,
+                //    processData: true,
+                //    beforeSend: function (XMLHttpRequest) {
+                //        XMLHttpRequest.setRequestHeader("Accept", "application/json");
+                //    },
+                //    success: function (data) {//On Successfull service call      
+                //        alert("Kaydınız alınmıştır");
+                //    },
+                //    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                //        alert("işlem yapılırken hata oluştu");
+                //    }
+                //});
             });
 
         });
