@@ -74,16 +74,25 @@ a[data-theme="reset"][data-role="button"].notext .ui-btn-text {
 /*For Placeholders!*/
 input::-webkit-input-placeholder {
     color: #000;
+    font-weight:800;
 }
 
 input::-moz-placeholder {
     color: #000;
+    font-weight:800;
 }
 
 input:-moz-placeholder { /* Older versions of Firefox */
     color: #000;
+    font-weight:800;
 }
 
 input:-ms-input-placeholder {
     color: #000;
+    font-weight:800;
+}
+/* For adjust textinputs*/
+
+.ui-input-text.ui-shadow-inset.ui-corner-all.ui-btn-shadow{
+    width:100%;
 }
