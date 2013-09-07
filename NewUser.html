@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <title>Mobilizm</title>
@@ -27,12 +27,36 @@
                
                 $.support.cors = true;
 
+<<<<<<< HEAD
                 $.getJSON("http://212.109.96.121:5556/Mobile/MobilizmService.svc/Mobile/GetMenus?callback=?", null, function (myValue) {
                     debugger;
                     alert("ok")
+=======
+                $.ajax({
+
+                    type: "GET",
+                    contentType: "application/json;charset=utf-8",
+                    datatype: "json",
+                    url: "http://212.109.96.121:5556/Mobile/MobilizmService.svc/Mobile/GetMenus",
+                    async: false,
+                    
+                    cache: false,
+                    processData: true,
+                    beforeSend: function (XMLHttpRequest) {
+                        XMLHttpRequest.setRequestHeader("Accept", "application/json");
+                    },
+                    success: function (data) {//On Successfull service call      
+                        alert(data.d[0].Html);
+                        alert("ok");
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        alert("işlem yapılırken hata oluştu");
+                    }
+>>>>>>> 3adac11603eb8078b3c37755f7b77f0efad41b48
                 });
                 //$.ajax({
 
+<<<<<<< HEAD
                 //    type: "GET",
                 //    contentType: "application/json;charset=utf-8",
                 //    datatype: "json",
@@ -53,6 +77,8 @@
                 //    }
                 //});
 
+=======
+>>>>>>> 3adac11603eb8078b3c37755f7b77f0efad41b48
                 //$.ajax({
 
                 //    type: "GET",
@@ -82,7 +108,11 @@
 <body>
     <div data-role="page">
         <div data-theme="d" data-role="header">
+<<<<<<< HEAD
             <h3>Yeni Kullanıcıl</h3>
+=======
+            <h3>Yeni KullanıcıP</h3>
+>>>>>>> 3adac11603eb8078b3c37755f7b77f0efad41b48
         </div>
         <div  data-role="content">
 
