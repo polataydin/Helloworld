@@ -22,11 +22,11 @@
                 var PlumberId = "13";               
 
                 alert('{"PlumberId":"' + PlumberId +'"}');
-
+                var x = '{"PlumberId":"' + PlumberId + '"}';
                 $.support.cors = true;
 
                 $.ajax({
-                    data: { PlumberId: JSON.stringify(PlumberId) },
+                    data: x,
                     type: "POST",
                     dataType: "json",
                     contentType: "application/json;charset=utf-8",
