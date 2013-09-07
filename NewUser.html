@@ -28,12 +28,13 @@
                 jQuery.support.cors = true;
                 jQuery.ajax({
 
-                    type: "GET",
+                    type: "POST",
                     contentType: "application/json;charset=utf-8",
                     datatype: "json",
                     url: "http://212.109.96.121:5556/Mobile/MobilizmService.svc/CreateCustomer",
                     async: false,
-                    data: { customers: JSON.stringify(typesArray), origin: 167440003, status: 167440001 },
+                    //data :  '{"customers":"' +  JSON.stringify(typesArray) + '","origin ":"' +167440003+ //, origin: 167440003, status: 167440001 },
+                    data: '{"origin":"' + 167440003 + '","status":"' + 167440001 + '"}',
                     cache: false,
                     processData: true,
                     beforeSend: function (XMLHttpRequest) {
