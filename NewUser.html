@@ -29,31 +29,32 @@
                
                 $.support.cors = true;
 
-                $.getJSON("http://212.109.96.121:5556/Mobile/MobilizmService.svc/Rest/GetMenus?callback=?", null, function (myValue) {
-                    debugger;
-                    alert("ok")
-                });
-                //$.ajax({
+                //$.getJSON("http://212.109.96.121:5556/Mobile/MobilizmService.svc/Rest/GetMenus?callback=?", null, function (myValue) {
+                //    debugger;
+                //    alert("ok")
+                //})
+         
+                $.ajax({
 
-                //    type: "GET",
-                //    contentType: "application/json;charset=utf-8",
-                //    datatype: "json",
-                //    url: "http://212.109.96.121:5556/Mobile/MobilizmService.svc/GetMenus",
-                //    async: false,
-                    
-                //    cache: false,
-                //    processData: true,
-                //    beforeSend: function (XMLHttpRequest) {
-                //        XMLHttpRequest.setRequestHeader("Accept", "application/json");
-                //    },
-                //    success: function (data) {//On Successfull service call      
-                //        alert(data.d[0].Html);
-                //        alert("ok");
-                //    },
-                //    error: function (XMLHttpRequest, textStatus, errorThrown) {
-                //        alert("işlem yapılırken hata oluştu");
-                //    }
-                //});
+                    type: "GET",
+                    contentType: "application/json;charset=utf-8",
+                    datatype: "jsonp",
+                    url: "http://212.109.96.121:5556/Mobile/MobilizmService.svc/Rest/GetMenus",
+                    async: false,                    
+                    cache: false,
+                    processData: true,
+                    beforeSend: function (XMLHttpRequest) {
+                        XMLHttpRequest.setRequestHeader("Accept", "application/json");
+                    },
+                   
+                    success: function (data) {//On Successfull service call      
+                        alert(data.d[0].Html);
+                        alert("ok");
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        alert("işlem yapılırken hata oluştu");
+                    }
+                });
 
                 //$.ajax({
 
