@@ -31,7 +31,7 @@
                     type: "GET",
                     contentType: "application/json;charset=utf-8",
                     datatype: "json",
-                    url: "http://212.109.96.121:5556/Mobile/MobilizmService.svc/GetMenus",
+                    url: "http://212.109.96.121:5556/Mobile/MobilizmService.svc/Mobile/GetMenus",
                     async: false,
                     
                     cache: false,
@@ -40,7 +40,8 @@
                         XMLHttpRequest.setRequestHeader("Accept", "application/json");
                     },
                     success: function (data) {//On Successfull service call      
-                        alert( data.d[0].Html);
+                        alert(data.d[0].Html);
+                        alert("ok");
                     },
                     error: function (XMLHttpRequest, textStatus, errorThrown) {
                         alert("işlem yapılırken hata oluştu");
