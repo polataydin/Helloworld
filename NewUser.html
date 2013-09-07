@@ -25,12 +25,34 @@
 
                
                 $.support.cors = true;
+
                 $.ajax({
 
                     type: "GET",
                     contentType: "application/json;charset=utf-8",
                     datatype: "json",
-                    url: "http://212.109.96.121:5556/Mobile/MobilizmService.svc/mobile/CreateCustomer",
+                    url: "http://212.109.96.121:5556/Mobile/MobilizmService.svc/GetMenus",
+                    async: false,
+                    
+                    cache: false,
+                    processData: true,
+                    beforeSend: function (XMLHttpRequest) {
+                        XMLHttpRequest.setRequestHeader("Accept", "application/json");
+                    },
+                    success: function (data) {//On Successfull service call      
+                        alert( data.d[0].Html);
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        alert("işlem yapılırken hata oluştu");
+                    }
+                });
+
+                $.ajax({
+
+                    type: "GET",
+                    contentType: "application/json;charset=utf-8",
+                    datatype: "json",
+                    url: "http://212.109.96.121:5556/Mobile/MobilizmService.svc/CreateCustomer",
                     async: false,
                     data: { customers: JSON.stringify(typesArray), origin: 167440003, status: 167440001 },
                     cache: false,
