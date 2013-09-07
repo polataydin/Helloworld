@@ -39,7 +39,8 @@
                     beforeSend: function (XMLHttpRequest) {
                         XMLHttpRequest.setRequestHeader("Accept", "application/json");
                     },
-                    success: function (data) {//On Successfull service call      
+                    success: function (data) {//On Successfull service call 
+                        
                         alert("Kaydınız alınmıştır");
                     },
                     error: function (XMLHttpRequest, textStatus, errorThrown) {
