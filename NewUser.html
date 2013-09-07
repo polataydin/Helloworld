@@ -16,25 +16,11 @@
         $(document).bind("pageinit", function (event) {
            
             $('#save').click(function () {
-                alert("triggered");
+            
+             
+                $.getJSON("http://212.109.96.121:5556/Example/JsonpService.svc/Rest/GetData?callback=?", { value: 5 }, function (myValue) {
                 
-                var servicepath = "http://212.109.96.121:5556/Example/";
-                var PlumberId = "14";               
-
-                alert('{"PlumberId":"' + PlumberId +'"}');
-                var x = '{"PlumberId":"' + PlumberId + '"}';
-                $.support.cors = true;
-
-                $.ajax({
-                    
-                    type: "POST",
-                    dataType: "json",
-                    contentType: "application/json;charset=utf-8",
-                    url: servicepath + "Service1.svc/SearchWorkBook",
-                    success: function (data) {
-                        alert(data.SearchWorkBookResult);
-                    },
-                    error: function (a, e, d) { alert(e + ' ' + d); }
+                    alert(myvalue);
                 });
 
                
