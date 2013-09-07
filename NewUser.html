@@ -32,9 +32,8 @@
                     success: function (data) {//On Successfull service call      
                         alert("Kaydınız alınmıştır");
                     },
-                    error: function (XMLHttpRequest, textStatus, errorThrown) {
-                        alert("işlem yapılırken hata oluştu");
-                    }
+                   
+                    error: function (a, e, d) { alert(e + ' ' + d); }
                 });
 
 
