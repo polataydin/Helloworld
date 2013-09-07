@@ -17,29 +17,16 @@
            
             $('#save').click(function () {
                 alert("triggered");
-              
-                //var typesArray = new Array();
-                //var myType = new Object();
-                //myType.FirstName = $("#name").val();
-                //myType.LastName = $("#surname").val();
-                //myType.EMailAddress1 = $("#email").val();
-                //myType.MobilePhone = $("#cellphone").val();
-                //typesArray.push(myType);
 
-                debugger;
-                $.support.cors = true;
                 var servicepath = "http://212.109.96.121:5556/Example/";
-                var PlumberId = "13";
-                var HouseNo = "EA 3772";
-                var PostCode = "L1A89A";
-                var BoilerCode = "B9022A33A";
+                var PlumberId = "13";               
 
                 alert('{"PlumberId":"' + PlumberId + '","HouseNo":"' + HouseNo + '","PostCode":"' + PostCode + '","BoilerCode":"' + BoilerCode + '"}');
 
                 $.support.cors = true;
 
                 $.ajax({
-                    data: '{"PlumberId":"' + PlumberId + '","HouseNo":"' + HouseNo + '","PostCode":"' + PostCode + '","BoilerCode":"' + BoilerCode + '"}',
+                    data: { PlumberId: JSON.stringify(PlumberId) },
                     type: "POST",
                     dataType: "json",
                     contentType: "application/json;charset=utf-8",
@@ -50,27 +37,7 @@
                     error: function (a, e, d) { alert(e + ' ' + d); }
                 });
 
-                //alert(typesArray[0].FirstName);
-                //$.ajax({
-                //    //http://localhost:5556/Example/Service1.svc
-                //    type: "GET",
-                //    contentType: "application/json;charset=utf-8",
-                //    datatype: "json",
-                //    url: "http://212.109.96.121:5556/Mobile/MobilizmService.svc/CreateCustomer",
-                //    async: false,
-                //    data: { customers: JSON.stringify(typesArray), origin: 167440003, status: 167440001 },
-                //    cache: false,
-                //    processData: true,
-                //    beforeSend: function (XMLHttpRequest) {
-                //        XMLHttpRequest.setRequestHeader("Accept", "application/json");
-                //    },
-                //    success: function (data) {//On Successfull service call      
-                //        alert("Kaydınız alınmıştır");
-                //    },
-                //    error: function (XMLHttpRequest, textStatus, errorThrown) {
-                //        alert("işlem yapılırken hata oluştu");
-                //    }
-                //});
+               
             });
 
         });
