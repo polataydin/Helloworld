@@ -17,7 +17,7 @@
            
             $('#save').click(function () {
                 alert("triggered");
-                debugger;
+              
                 var typesArray = new Array();
                 var myType = new Object();
                 myType.FirstName = $("#name").val();
@@ -27,55 +27,28 @@
                 typesArray.push(myType);
 
                
-                $.support.cors = true;
-
-                //$.getJSON("http://212.109.96.121:5556/Mobile/MobilizmService.svc/Rest/GetMenus?callback=?", null, function (myValue) {
-                //    debugger;
-                //    alert("ok")
-                //})
-         
+                $.support.cors = true;                
+                alert(typesArray[0].FirstName);
                 $.ajax({
 
                     type: "GET",
                     contentType: "application/json;charset=utf-8",
                     datatype: "json",
-                    url: "http://212.109.96.121:5556/Mobile/MobilizmService.svc/GetMenus",
-                    async: false,                    
+                    url: "http://212.109.96.121:5556/Mobile/MobilizmService.svc/CreateCustomer",
+                    async: false,
+                    data: { customers: JSON.stringify(typesArray), origin: 167440003, status: 167440001 },
                     cache: false,
                     processData: true,
                     beforeSend: function (XMLHttpRequest) {
                         XMLHttpRequest.setRequestHeader("Accept", "application/json");
                     },
-                   
                     success: function (data) {//On Successfull service call      
-                        alert(data.d[0].Html);
-                        alert("ok");
+                        alert("Kaydınız alınmıştır");
                     },
                     error: function (XMLHttpRequest, textStatus, errorThrown) {
                         alert("işlem yapılırken hata oluştu");
                     }
                 });
-
-                //$.ajax({
-
-                //    type: "GET",
-                //    contentType: "application/json;charset=utf-8",
-                //    datatype: "json",
-                //    url: "http://212.109.96.121:5556/Mobile/MobilizmService.svc/CreateCustomer",
-                //    async: false,
-                //    data: { customers: JSON.stringify(typesArray), origin: 167440003, status: 167440001 },
-                //    cache: false,
-                //    processData: true,
-                //    beforeSend: function (XMLHttpRequest) {
-                //        XMLHttpRequest.setRequestHeader("Accept", "application/json");
-                //    },
-                //    success: function (data) {//On Successfull service call      
-                //        alert("Kaydınız alınmıştır");
-                //    },
-                //    error: function (XMLHttpRequest, textStatus, errorThrown) {
-                //        alert("işlem yapılırken hata oluştu");
-                //    }
-                //});
             });
 
         });
