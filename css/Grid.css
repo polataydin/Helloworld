@@ -1,0 +1,44 @@
+﻿/*written by Polat Aydın*/
+
+.ui-content .mgrid .ui-bar {
+    border-color: #FFFFFF #DDDDDD #CCCCCC #FFFFFF;
+    border-style: solid;
+    border-width: 1px 0;
+    padding: 40px;
+    color: #000000;
+    border-collapse: separate;
+}
+
+.ui-content .mgrid .column {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-color: #FFFFFF #DDDDDD #CCCCCC #FFFFFF;
+    border-style: solid;
+    border-width: 1px 0px 1px 1px;
+    font-size : 18px;
+    font-weight: normal;
+    padding-top: 10px;
+    padding-left: 5px;
+    padding-right: 0px;
+    padding-bottom:10px;
+    text-align: left;
+    color: #000000;
+}
+
+.ui-content .mgrid .header {
+    background: none repeat scroll 0 0 #df1022;
+    font-weight: normal;
+    padding-top: 10px;
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-bottom:10px;
+    text-align: left;
+    color: white;
+    font-size : 20px;
+}
+.ui-content .mgrid .ui-bar-b {
+    background-color: white;
+}
+
+.clickkk {
+    background-color: white;
+}

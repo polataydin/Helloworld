@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Mobilizm</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link href="../css/Mobilizm.css" rel="stylesheet" />
+    <link href="../css/jquery.mobile.structure-1.3.2.min.css" rel="stylesheet" />
+
+    <script src="../js/jquery.js"></script>
+    <script src="../js/JSON.js"></script>
+    <script src="../js/jquery.mobile-1.3.2.js"></script> 
+    <script src="../js/GeneralFunctions.js"></script>
+    <script src="../js/PageScripts/MainPage.js"></script>
+
+</head>
+<body>
+    <div data-role="page">
+        <div data-theme="d" data-role="header">
+            <h3>Mobilizm</h3>
+        </div>
+        <div data-role="content">
+
+            <div data-role="fieldcontain">
+                <label for="startdate">Başlangıç Zamanı :</label>
+                <input type="date" name="date" id="startdate" value="" />
+            </div>
+            <div data-role="fieldcontain">
+                <label for="enddate">Bitiş Zamanı:</label>
+                <input type="date" name="date" id="enddate" value="" />
+            </div>
+            <div data-role="fieldcontain">
+                <label for="citytext">Araç:</label>
+                <input type="text" name="city" id="citytext" value="" />
+                <a href="#dialog1" id="citylookup" data-transition="flip" data-inline="true" data-inline="true" data-ajax="true">..</a>
+            </div>
+            <div data-role="fieldcontain">
+                <label for="parkingtext">Park Noktaları:</label>
+                <input type="text" name="parking" id="parkingtext" value="" />
+                <a href="#dialog2" id="parkinglookup" data-transition="flip" data-ajax="true" data-inline="true" data-inline="true" data-ajax="true">..</a>
+            </div>
+            <input data-theme="d" type="button" value="Kaydet" id="save" />
+        </div>
+        <div data-role="footer" data-position="fixed">
+            <div data-role="navbar" data-iconpos="top">
+                <ul>
+                    <li><a href="#" data-icon="plus" class="ui-btn-active">Rezervasyon Yap</a></li>
+                    <li><a href="#" data-icon="check" class="ui-btn-active">Rezervasyonlarım</a></li>
+                    <li><a href="#" data-icon="gear" class="ui-btn-active">Hesabım</a></li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+    <div data-role="dialog" id="dialog1">
+        <div data-theme="d" data-role="header">
+            <h4>Mobilizm</h4>
+        </div>
+        <div id="content" data-role="content">
+            <ul id="citylist" data-role="listview" data-filter="true" data-filter-placeholder="Search Equipments..." data-inset="true">
+            </ul>
+        </div>
+    </div>
+    <div data-role="dialog" id="dialog2">
+        <div data-theme="d" data-role="header">
+            <h4>Mobilizm</h4>
+        </div>
+        <div id="content2" data-role="content">
+            <ul id="parkinglist" data-role="listview" data-filter="true" data-filter-placeholder="Search Parking Points..." data-inset="true">
+            </ul>
+        </div>
+    </div>
+
+</body>
+</html>
