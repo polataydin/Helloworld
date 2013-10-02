@@ -4,7 +4,7 @@
     var integer = 0;
     var count = null;
 
-    if (localStorage[localstoragename] == null) {
+    if (localStorage[localstoragename] == null || localStorage[localstoragename].length == 0) {
 
         $("#" + ulid).empty();
         while (true) {

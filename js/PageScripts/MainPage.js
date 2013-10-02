@@ -1,7 +1,8 @@
 ﻿var equipments, parkings = [];
 
+
 $(document).bind("pageinit", function (event) {
-    alert("ok");
+
     $("#citylookup").hide();
     $("#parkinglookup").css("visibility", "hidden");
 
@@ -18,8 +19,7 @@ $(document).bind("pageinit", function (event) {
     });
 
     $('#save').click(function (e) {
-        debugger;
-
+       
         arr = jQuery.grep(parkings, function (n) {
             return (n.Name = $("#parkingtext").val());
         });

@@ -8,8 +8,52 @@
     <link href="css/Mobilizm.css" rel="stylesheet" />
     <link href="css/jquery.mobile.structure-1.3.2.min.css" rel="stylesheet" />
     <link href="css/Overriddingjquerymobile.css" rel="stylesheet" />
+    <script src="js/jquery.js"></script>
+    <script src="js/jquery.mobile-1.3.2.js"></script>
+    <script src="js/GeneralFunctions.js"></script>
+    <script>
 
-    
+        
+        $(document).bind("pageinit", function () {
+            debugger;
+            if (localStorage.getItem("user") != null) {              
+
+                window.location.href = $("#myhref").attr("href");
+            };
+
+            $('#myhref').click(function (event) {
+                debugger;
+                $.ajax({
+
+                    type: "GET",
+                    contentType: "application/json;charset=utf-8",
+                    datatype: "json",
+                    url: "http://212.109.96.121:5556/Mobile/MobilizmService.svc/Login",
+                    async: false,
+                    data: { Email: $("#username").val(), Password: $("#password").val() },
+                    cache: false,
+                    processData: true,
+                    beforeSend: function (XMLHttpRequest) {
+                        XMLHttpRequest.setRequestHeader("Accept", "application/json");
+                    },
+                    success: function (data) {//On Successfull service call  
+                        debugger;
+                        localStorage.setItem("user", $("#username").val());
+
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        debugger;
+                        event.stopPropagation();
+                        event.preventDefault();
+                    }
+                });
+
+
+            });
+        });
+
+    </script>
+   
 
 </head>
 <body>
@@ -27,52 +71,10 @@
         <div data-role="fieldcontain">
             <!-- mobilizmred class ref Overriddingjquerymobile -->
             <a href="UI/Main.html" id="myhref" data-theme="reset" data-ajax="false" class="mobilizmred" data-role="button" data-ajax="false">Sign in</a>  
-            <a href="NewUser.html" id="newuser" data-theme="reset" class="mobilizmred" data-role="button" data-ajax="false">Not a member?</a>
+            <a href="UI/NewUser.html" id="newuser" data-theme="reset" class="mobilizmred" data-role="button" data-ajax="false">Not a member?</a>
         </div>
     </div>
-    <script src="js/jquery.js"></script>
-    <script src="js/jquery.mobile-1.3.2.js"></script>
-    <script src="js/GeneralFunctions.js"></script>
-    <script>
-
-        $('#myhref').click(function (event) {
-            debugger;
-            $.ajax({
-
-                type: "GET",
-                contentType: "application/json;charset=utf-8",
-                datatype: "json",
-                url: "http://212.109.96.121:5556/Mobile/MobilizmService.svc/Login",
-                async: false,
-                data: { Email: $("#username").val(), Password: $("#password").val() },
-                cache: false,
-                processData: true,
-                beforeSend: function (XMLHttpRequest) {
-                    XMLHttpRequest.setRequestHeader("Accept", "application/json");
-                },
-                success: function (data) {//On Successfull service call  
-                    debugger;
-                    localStorage.setItem("user", $("#username").val());
-
-                },
-                error: function (XMLHttpRequest, textStatus, errorThrown) {
-                    debugger;
-                }
-            });
-
-
-        });
-
-        $(document).bind("pageinit", function () {
-            debugger;
-            if (localStorage.getItem("user") != null) {
-                //$.mobile.loadPage("UI/Main.html");
-                window.location.href = $("#myhref").attr("href");
-                //$.mobile.changePage('UI/Main.html', { dataUrl: "/UI/Main.html", transition: "slideup" });
-
-            }
-        });
-    </script>
-  
+   
+    
 </body>
 </html>
