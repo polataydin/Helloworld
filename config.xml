@@ -72,10 +72,9 @@
 
     <feature name="http://api.phonegap.com/1.0/geolocation" />
     <plugin name="Geolocation" value="CDVLocation" />
-    <access origin="http://127.0.0.1*" />
-    <access origin="*.google.*" subdomains="true" />
-    <access origin="*.googleapis.*" subdomains="true" />
-    <access origin="*.googleusercontent.*" subdomains="true" />
-    <access origin="*.maps.googleapis.com/*" subdomains="true" />
-    <access origin="*.gstatic.*" subdomains="true" />
+    <access origin="maps.gstatic.com"/>
+    <access origin="maps.googleapis.com"/>
+    <access origin="maps.google.com"/>
+    <access origin="http://maps.google.com/maps/api/js?sensor=false&v=3&libraries=geometry"/>
+  
 </widget>
