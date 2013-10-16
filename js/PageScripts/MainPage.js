@@ -9,7 +9,7 @@ $(document).bind("pageinit", function (event) {
     //    event.stopImmediatePropagation();
     //    return;
     //}
-    var options = { maximumAge: 3000, timeout: 5000, enableHighAccuracy: false };
+    var options = {  timeout: 10000, enableHighAccuracy: false };
 
     navigator.geolocation.getCurrentPosition(onSuccess, onError, options);
 
