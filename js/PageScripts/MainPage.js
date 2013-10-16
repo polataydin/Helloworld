@@ -9,7 +9,7 @@ $(document).bind("pageinit", function (event) {
     //    event.stopImmediatePropagation();
     //    return;
     //}
-    var options = { maximumAge: 3000, timeout: 5000, enableHighAccuracy: true };
+    var options = { maximumAge: 3000, timeout: 5000, enableHighAccuracy: false };
 
     navigator.geolocation.getCurrentPosition(successonload, onError, options);
 
@@ -313,6 +313,7 @@ $(document).delegate('#dialog3', 'pageshow', function (event) {
 });
 
 function successonload(position) {
+    alert("success");
     lat = position.coords.latitude;
     lng = position.coords.longitude;
 
