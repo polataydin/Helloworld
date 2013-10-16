@@ -9,11 +9,15 @@ $(document).bind("pageinit", function (event) {
     //    event.stopImmediatePropagation();
     //    return;
     //}
-    var options = {  timeout: 10000, enableHighAccuracy: false };
+    if (navigator.geolocation) {
+        alert("girdi");
 
-    navigator.geolocation.getCurrentPosition(onSuccess, onError, options);
 
-
+        if (navigator.geolocation) {
+            var options = { timeout: 5000, maximumAge: 0, enableHighAccuracy: true };
+            navigator.geolocation.getCurrentPosition(onSuccess, onError, options);
+        }
+    }
 
     $("#startdate").scroller(TurkishMobiscrollLocalization);
     $("#enddate").scroller(TurkishMobiscrollLocalization);
@@ -205,6 +209,8 @@ $(document).delegate('#dialog2', 'pagebeforeshow', function (event) {
 
 $(document).delegate('#dialog3', 'pageshow', function (event) {
     debugger;
+    var info_window = new google.maps.InfoWindow();
+
     var lookuparray = [];
     var service;
     var latlng = new google.maps.LatLng(lat, lng);
@@ -302,7 +308,7 @@ $(document).delegate('#dialog3', 'pageshow', function (event) {
 
 
         google.maps.event.addListener(marker, 'click', function () {
-            var info_window = new google.maps.InfoWindow();
+
             var c = this.get('contents');
             info_window.setContent(c);
             info_window.open(map, this);
@@ -313,7 +319,7 @@ $(document).delegate('#dialog3', 'pageshow', function (event) {
 });
 
 function onSuccess(position) {
-    alert("success");
+
     lat = position.coords.latitude;
     lng = position.coords.longitude;
 
@@ -324,10 +330,8 @@ function onError(error) {
 
 }
 
-
-
 function setmap(name) {
-    debugger;
+
     $("#parkingtext").val(name);
     $('#dialog3').dialog("close");
 }
