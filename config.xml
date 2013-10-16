@@ -70,5 +70,5 @@
 
     <access origin="http://212.109.96.121:5556" subdomains="true" />
     <feature name="http://api.phonegap.com/1.0/geolocation" />
-	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
 </widget>
