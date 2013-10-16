@@ -9,10 +9,12 @@ $(document).bind("pageinit", function (event) {
     //    event.stopImmediatePropagation();
     //    return;
     //}
+    var options = { maximumAge: 3000, timeout: 5000, enableHighAccuracy: true };
 
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(successonload);
-    }
+    navigator.geolocation.getCurrentPosition(successonload, onError, options);
+
+
+
     $("#startdate").scroller(TurkishMobiscrollLocalization);
     $("#enddate").scroller(TurkishMobiscrollLocalization);
 
@@ -311,9 +313,13 @@ $(document).delegate('#dialog3', 'pageshow', function (event) {
 });
 
 function successonload(position) {
-	alert(position.coords.latitude);
     lat = position.coords.latitude;
     lng = position.coords.longitude;
+
+}
+function onError(error) {
+    alert('code: ' + error.code + '\n' +
+           'message: ' + error.message + '\n');
 
 }
 
