@@ -9,27 +9,32 @@ $(document).bind("pageinit", function (event) {
     //    event.stopImmediatePropagation();
     //    return;
     //}
+    try
+    {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(successonload);
+        }
+        $("#startdate").scroller(TurkishMobiscrollLocalization);
+        $("#enddate").scroller(TurkishMobiscrollLocalization);
 
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(successonload);
+        $("#citylookup").hide();
+        $("#parkinglookup").css("visibility", "hidden");
+
+        $('#citytext').click(function (e) {
+
+            $("#citylookup").click();
+
+            e.stopImmediatePropagation();
+        });
+        $('#parkingtext').click(function (e) {
+
+            $("#parkinglookup").click();
+            e.stopImmediatePropagation();
+        });
     }
-    $("#startdate").scroller(TurkishMobiscrollLocalization);
-    $("#enddate").scroller(TurkishMobiscrollLocalization);
-
-    $("#citylookup").hide();
-    $("#parkinglookup").css("visibility", "hidden");
-
-    $('#citytext').click(function (e) {
-
-        $("#citylookup").click();
-
-        e.stopImmediatePropagation();
-    });
-    $('#parkingtext').click(function (e) {
-
-        $("#parkinglookup").click();
-        e.stopImmediatePropagation();
-    });
+    catch (err) {
+        alert(err);
+    }
 
 
 });
