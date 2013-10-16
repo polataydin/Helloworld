@@ -9,32 +9,28 @@ $(document).bind("pageinit", function (event) {
     //    event.stopImmediatePropagation();
     //    return;
     //}
-    try
-    {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(successonload);
-        }
-        $("#startdate").scroller(TurkishMobiscrollLocalization);
-        $("#enddate").scroller(TurkishMobiscrollLocalization);
 
-        $("#citylookup").hide();
-        $("#parkinglookup").css("visibility", "hidden");
+    //if (navigator.geolocation) {
+    //    navigator.geolocation.getCurrentPosition(successonload);
+    //}
+    $("#startdate").scroller(TurkishMobiscrollLocalization);
+    $("#enddate").scroller(TurkishMobiscrollLocalization);
 
-        $('#citytext').click(function (e) {
+    $("#citylookup").hide();
+    $("#parkinglookup").css("visibility", "hidden");
 
-            $("#citylookup").click();
+    $('#citytext').click(function (e) {
 
-            e.stopImmediatePropagation();
-        });
-        $('#parkingtext').click(function (e) {
+        $("#citylookup").click();
 
-            $("#parkinglookup").click();
-            e.stopImmediatePropagation();
-        });
-    }
-    catch (err) {
-        alert(err);
-    }
+        e.stopImmediatePropagation();
+    });
+    $('#parkingtext').click(function (e) {
+
+        $("#parkinglookup").click();
+        e.stopImmediatePropagation();
+    });
+
 
 
 });
@@ -269,7 +265,7 @@ $(document).delegate('#dialog3', 'pageshow', function (event) {
             });
 
             if (count == 0 || count == null) {
-                if (localStorage["parkings"] ==undefined  || JSON.parse(localStorage["parkings"]).length == 0) {
+                if (localStorage["parkings"] == undefined || JSON.parse(localStorage["parkings"]).length == 0) {
                     localStorage["parkings"] = JSON.stringify(lookuparray);
                 }
                 break;
