@@ -207,7 +207,12 @@ $(document).delegate('#dialog2', 'pagebeforeshow', function (event) {
 
 $(document).delegate('#dialog3', 'pageshow', function (event) {
     alert("harita onload");
-    var info_window = new google.maps.InfoWindow();
+    try{
+        var info_window = new google.maps.InfoWindow();
+    }
+    catch (err) {
+        alert(err.message);
+    }
     alert("infowindow tanımlandı");
     var lookuparray = [];
     var service;
