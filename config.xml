@@ -74,7 +74,5 @@
     <plugin name="Geolocation" value="CDVLocation" />
     <access origin="maps.gstatic.com"/>
     <access origin="maps.googleapis.com"/>
-    <access origin="maps.google.com"/>
-    <access origin="http://maps.google.com/maps/api/js?sensor=false&v=3&libraries=geometry"/>
-  
+    <access origin="maps.google.com"/>  
 </widget>
