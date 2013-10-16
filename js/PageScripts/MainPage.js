@@ -10,9 +10,9 @@ $(document).bind("pageinit", function (event) {
     //    return;
     //}
 
-    //if (navigator.geolocation) {
-    //    navigator.geolocation.getCurrentPosition(successonload);
-    //}
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(successonload);
+    }
     $("#startdate").scroller(TurkishMobiscrollLocalization);
     $("#enddate").scroller(TurkishMobiscrollLocalization);
 
@@ -311,6 +311,7 @@ $(document).delegate('#dialog3', 'pageshow', function (event) {
 });
 
 function successonload(position) {
+	alert(position.coords.latitude);
     lat = position.coords.latitude;
     lng = position.coords.longitude;
 
