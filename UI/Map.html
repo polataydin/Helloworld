@@ -4,12 +4,12 @@
     <title>Mobilizm</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <link href="../css/Mobilizm.css" rel="stylesheet" />
     <link href="../css/jquery.mobile.structure-1.3.2.min.css" rel="stylesheet" />
     <link href="../css/Overriddingjquerymobile.css" rel="stylesheet" />
     <link href="../css/mobiscroll.2-6-1.css" rel="stylesheet" />
 
-    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&v=3&libraries=geometry"></script>
     <script src="../js/JSON.js"></script>
     <script src="../js/jquery.js"></script>
     <script src="../js/BlockUI.js"></script>
@@ -44,12 +44,7 @@
             <div data-role="fieldcontain">
                 <label for="parkingtext">Park Noktaları:</label>
                 <input type="text" name="parking" id="parkingtext" value="" />
-
                 <a href="#dialog2" id="parkinglookup" data-transition="flip" data-ajax="true" data-inline="true" data-inline="true" data-ajax="true">..</a>
-
-            </div>
-            <div data-role="fieldcontain">
-                <a href="#dialog3"  data-theme="d" data-rel="dialog" data-rel="back" data-role="button" id="hrefs" data-ajax="true">Haritadan Seç</a>
             </div>
             <!--  <a href="#" data-theme="d" data-role="button" id="save"  rel="external" >Kaydet</a>-->
             <input data-theme="d" type="submit" value="Kaydet" id="save" data-rel="external" />
@@ -57,9 +52,9 @@
         <div data-role="footer" data-position="fixed">
             <div data-role="navbar" data-iconpos="top" data--theme="d">
                 <ul>
-                    <li><a href="#" data-icon="plus" class="ui-btn-active" >Rezervasyon Yap</a></li>
-                    <li><a href="Reservation.html" data-icon="check" class="ui-btn-active" data-ajax="false">Rezervasyonlarım</a></li>
-                    <li><a href="UpdateUser.html" data-icon="gear" class="ui-btn-active" data-ajax="false">Hesabım</a></li>
+                    <li><a href="Main.html" data-icon="plus" class="ui-btn-active">Rezervasyon Yap</a></li>
+                    <li><a href="Reservation.html" data-icon="check" class="ui-btn-active">Rezervasyonlarım</a></li>
+                    <li><a href="UpdateUser.html" data-icon="gear" class="ui-btn-active">Hesabım</a></li>
                 </ul>
             </div>
 
@@ -84,29 +79,21 @@
             </ul>
         </div>
     </div>
-    <div data-role="dialog" id="dialog3">
-        <div data-theme="d" data-role="header">
-            <h4>Harita</h4>
 
-        </div>
-
-        <div id="content3" data-role="content">
-            <div data-role="fieldcontain">
-                <div id="mapcanvas" style="height: 500px; width: 100%;">
-                </div>
-                <a href="#menu" data-rel="dialog" style="visibility: hidden" id="A1">Open dialog</a>
-            </div>
-
-        </div>
-
-    </div>
     <script>
+        //jQuery.scroller.formatDate('yyyy-MM-dd HH:mm:ss', new Date(this.value));
         $("#save").click(function (e) {
+
+            if (localStorage.getItem("userguid") == null) {
+                alert("Login hatası oluştu , lütfen uygulamınızın cache değerlerini siliniz.");
+                e.stopImmediatePropagation();
+                return;
+            }
             debugger;
-            arr = jQuery.grep(JSON.parse(localStorage["parkings"]), function (n) {
+            arr = jQuery.grep(parkings, function (n) {
                 return (n.Name == $("#parkingtext").val());
             });
-            res = jQuery.grep(JSON.parse(localStorage["cities"]), function (n) {
+            res = jQuery.grep(equipments, function (n) {
                 return (n.Name == $("#citytext").val());
             });
 
@@ -115,12 +102,8 @@
 
                 trd_contactid: {
                     Id: localStorage.getItem("userguid"),
-                    LogicalName: "contact"
-                },
-                trd_parkpointid: {
-                    Id: arr[0].Guid,
-                    LogicalName: "trd_parkinginfo"
-                },
+                    ş: "contact"
+                }
 
             };
             //optionsets
@@ -136,7 +119,6 @@
 
                 ScheduledStart: dateToWcf($("#startdate").val().replace(/(\d{2})\.(\d{2})\.(\d{4})/, '$3-$2-$1')),
                 ScheduledEnd: dateToWcf($("#enddate").val().replace(/(\d{2})\.(\d{2})\.(\d{4})/, '$3-$2-$1'))
-                
             };
 
             $.support.cors = true;
@@ -147,7 +129,7 @@
                 datatype: "json",
                 url: "http://212.109.96.121:5556/Mobile/MobilizmService.svc/CreateRezervation",
                 async: true,
-                data: { rezervations: JSON.stringify(rezervations), rezervationslookups: JSON.stringify(rezervationslookups), rezervationsoptionsets: JSON.stringify(rezervationsoptionsets), origin: 2, ResourceId: res[0].Guid },
+                data: { rezervations: JSON.stringify(rezervations), rezervationslookups: JSON.stringify(rezervationslookups), rezervationsoptionsets: JSON.stringify(rezervationsoptionsets), origin: 2, ParkingId: res[0].Guid },
                 cache: false,
                 processData: true,
                 beforeSend: function (XMLHttpRequest) {

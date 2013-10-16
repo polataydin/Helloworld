@@ -16,7 +16,6 @@
         $(document).bind("pageinit", function (event) {
 
             $('#save').click(function () {               
-
                 var typesArray = new Array();
                 var myType = new Object();
                 myType.FirstName = $("#name").val();
@@ -41,6 +40,8 @@
                     },
                     success: function (data) {//On Successfull service call      
                         alert("Kaydınız alınmıştır");
+                        window.location.href = "../Index.html";
+                        
                     },
                     error: function (XMLHttpRequest, textStatus, errorThrown) {
                         alert("işlem yapılırken hata oluştu");

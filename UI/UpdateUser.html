@@ -5,15 +5,19 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link href="../css/Mobilizm.css" rel="stylesheet" />
+   <link href="../css/Mobilizm.css" rel="stylesheet" />
     <link href="../css/jquery.mobile.structure-1.3.2.min.css" rel="stylesheet" />
+    <link href="../css/Overriddingjquerymobile.css" rel="stylesheet" />
+    <link href="../css/mobiscroll.2-6-1.css" rel="stylesheet" />
 
-    <script src="../js/jquery.js"></script>
     <script src="../js/JSON.js"></script>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/BlockUI.js"></script>
     <script src="../js/jquery.mobile-1.3.2.js"></script>
+    <script src="../js/mobiscroll.2-6-1.js"></script>
+    <script src="../js/Mobiscrolllocalization.js"></script>
     <script src="../js/GeneralFunctions.js"></script>
-    <script src="../js/PageScripts/MainPage.js"></script>
-
+    <script src="../js/PageScripts/UpdateUser.js"></script>
 </head>
 <body>
     <div data-role="page">
@@ -39,14 +43,15 @@
             </div>
              <div data-role="fieldcontain">
                 <label for="birthdate">Doğum Tarihi:</label>
-                <input type="date" name="birthdate" id="birthdate" value="" />
+                 <input id="birthdate" name="birthdate" />
             </div>
+            <input data-theme="d" type="submit" value="Güncelle" id="save" data-rel="external" />
         </div>
         <div data-role="footer" data-position="fixed">
             <div data-role="navbar" data-iconpos="top">
                 <ul>
-                    <li><a href="Main.html" data-icon="plus" class="ui-btn-active">Rezervasyon Yap</a></li>
-                    <li><a href="Reservation.html" data-icon="check" class="ui-btn-active">Rezervasyonlarım</a></li>
+                    <li><a href="Main.html" data-icon="plus" class="ui-btn-active" data-ajax="false">Rezervasyon Yap</a></li>
+                    <li><a href="Reservation.html" data-icon="check" class="ui-btn-active" data-ajax="false">Rezervasyonlarım</a></li>
                     <li><a href="#" data-icon="gear" class="ui-btn-active">Hesabım</a></li>
                 </ul>
             </div>

@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Mobilizm</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="../css/Mobilizm.css" rel="stylesheet" />
+    <link href="../css/jquery.mobile.structure-1.3.2.min.css" rel="stylesheet" />
+     <link href="../css/mobiscroll.2-6-1.css" rel="stylesheet" />
+    <link href="../css/jquery.wijmo-pro.3.20132.15.css" rel="stylesheet" />
+
+    <script src="../js/jquery.js"></script>
+    <script src="../js/JSON.js"></script>
+    <script src="../js/jquery.mobile-1.3.2.js"></script>
+    <script src="../js/wijmo-open.js"></script>
+    <script src="../js/wijmo-pro.js"></script>
+    <script src="../js/mobiscroll.2-6-1.js"></script>
+    <script src="../js/Mobiscrolllocalization.js"></script>
+    <script src="../js/GeneralFunctions.js"></script>
+    <script src="../js/PageScripts/EditReservation.js"></script>
+
+</head>
+<body>
+    <div data-role="page" >
+        <div data-theme="d" data-role="header">
+            <h3>Mobilizm</h3>
+        </div>
+        <div data-role="content" >
+           <div data-role="fieldcontain">
+
+                <label for="startdate">Başlangıç Zamanı :</label>
+                <input id="startdate" name="start" />
+            </div>
+            <div data-role="fieldcontain">
+                <label for="enddate">Bitiş Zamanı:</label>
+                <input id="enddate" name="end" />
+            </div>
+            <div data-role="fieldcontain">
+                <label for="car">Araç</label>
+                <input id="car" name="car" />
+            </div>
+            <div data-role="fieldcontain">
+                <label for="parkingpoint">Park Noktası</label>
+                <input id="parkingpoint" name="parkingpoint" />
+            </div>
+             <input data-theme="d" type="submit" value="Uzat" id="save" data-rel="external" />
+        </div>
+        <div data-role="footer" data-position="fixed">
+            <div data-role="navbar" data-iconpos="top">
+                <ul>
+                    <li><a href="Main.html" data-icon="plus" class="ui-btn-active" data-ajax="false">Rezervasyon Yap</a></li>
+                    <li><a href="Reservation.html" data-icon="check" class="ui-btn-active">Rezervasyonlarım</a></li>
+                    <li><a href="UpdateUser.html" data-icon="gear" class="ui-btn-active" data-ajax="false">Hesabım</a></li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>

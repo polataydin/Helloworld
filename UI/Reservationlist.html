@@ -7,33 +7,31 @@
 
     <link href="../css/Mobilizm.css" rel="stylesheet" />
     <link href="../css/jquery.mobile.structure-1.3.2.min.css" rel="stylesheet" />
+    <link href="../css/jquery.wijmo-pro.3.20132.15.css" rel="stylesheet" />
+    <link href="../css/Overriddingjquerymobile.css" rel="stylesheet" />
 
     <script src="../js/jquery.js"></script>
     <script src="../js/JSON.js"></script>
     <script src="../js/jquery.mobile-1.3.2.js"></script>
+    <script src="../js/wijmo-open.js"></script>
+    <script src="../js/wijmo-pro.js"></script>
     <script src="../js/GeneralFunctions.js"></script>
-
+    <script src="../js/PageScripts/Reservationlist.js"></script>
 
 </head>
 <body>
-    <div data-role="page">
+    <div data-role="page" >
         <div data-theme="d" data-role="header">
             <h3>Mobilizm</h3>
         </div>
-        <div data-role="content">
-            <div  data--theme ="d">
-                <ul data-role="listview">
-                    <li><a href="Reservationlist.html?type=Past" data-ajax="false">Geçmiş Rezervasyonlarım</a></li>
-                    <li><a href="Reservationlist.html?type=Present" data-ajax="false">Devam eden rezervasyonlarım</a></li>
-                    <li><a href="Reservationlist.html?type=Future" data-ajax="false">Gelecek Rezervasyonlarım</a></li>
-                </ul>
-            </div>
+        <div data-role="content" >
+            <table id="listtable" class="mgrid" data-theme="d"></table>
         </div>
         <div data-role="footer" data-position="fixed">
             <div data-role="navbar" data-iconpos="top">
                 <ul>
                     <li><a href="Main.html" data-icon="plus" class="ui-btn-active" data-ajax="false">Rezervasyon Yap</a></li>
-                    <li><a href="#" data-icon="check" class="ui-btn-active">Rezervasyonlarım</a></li>
+                    <li><a href="Reservation.html" data-icon="check" class="ui-btn-active">Rezervasyonlarım</a></li>
                     <li><a href="UpdateUser.html" data-icon="gear" class="ui-btn-active" data-ajax="false">Hesabım</a></li>
                 </ul>
             </div>
