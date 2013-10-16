@@ -69,6 +69,16 @@
     <preference name="permissions" value="none"/>
 
     <access origin="http://212.109.96.121:5556" subdomains="true" />
-    <access origin="http://maps.google.com/maps/api" subdomains="true" />
     <feature name="http://api.phonegap.com/1.0/geolocation" />
+	
+	
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <plugin name="Geolocation" value="org.apache.cordova.GeoBroker"/>
+
+	
+
 </widget>
