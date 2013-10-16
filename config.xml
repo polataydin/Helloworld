@@ -69,12 +69,13 @@
     <preference name="permissions" value="none"/>
 
     <access origin="http://212.109.96.121:5556" subdomains="true" />
- 
 
+    <feature name="http://api.phonegap.com/1.0/geolocation" />
     <plugin name="Geolocation" value="CDVLocation" />
-    <access origin="csi.gstatic.com"/>
-    <access origin="maps.gstatic.com"/>
-    <access origin="maps.googleapis.com"/>
-    <access origin="mt0.googleapis.com"/>
-    <access origin="mt1.googleapis.com"/>
+    <access origin="http://127.0.0.1*" />
+    <access origin="*.google.*" subdomains="true" />
+    <access origin="*.googleapis.*" subdomains="true" />
+    <access origin="*.googleusercontent.*" subdomains="true" />
+    <access origin="*.maps.googleapis.com/*" subdomains="true" />
+    <access origin="*.gstatic.*" subdomains="true" />
 </widget>
