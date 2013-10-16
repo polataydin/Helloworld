@@ -1,6 +1,5 @@
 ﻿var lng, lat = null;
 var markers = [];
-var info_window = new google.maps.InfoWindow();
 
 $(document).bind("pageinit", function (event) {
 
