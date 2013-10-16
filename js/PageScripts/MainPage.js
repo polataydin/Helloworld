@@ -10,9 +10,7 @@ $(document).bind("pageinit", function (event) {
     //    return;
     //}
     if (navigator.geolocation) {
-        alert("girdi");
-
-
+  
         if (navigator.geolocation) {
             var options = { timeout: 5000, maximumAge: 0, enableHighAccuracy: true };
             navigator.geolocation.getCurrentPosition(onSuccess, onError, options);
@@ -208,9 +206,9 @@ $(document).delegate('#dialog2', 'pagebeforeshow', function (event) {
 
 
 $(document).delegate('#dialog3', 'pageshow', function (event) {
-    debugger;
+    alert("harita onload");
     var info_window = new google.maps.InfoWindow();
-
+    alert("infowindow tanımlandı");
     var lookuparray = [];
     var service;
     var latlng = new google.maps.LatLng(lat, lng);
