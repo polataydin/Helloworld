@@ -11,7 +11,7 @@ $(document).bind("pageinit", function (event) {
     //}
     var options = { maximumAge: 3000, timeout: 5000, enableHighAccuracy: false };
 
-    navigator.geolocation.getCurrentPosition(successonload, onError, options);
+    navigator.geolocation.getCurrentPosition(onSuccess, onError, options);
 
 
 
@@ -312,7 +312,7 @@ $(document).delegate('#dialog3', 'pageshow', function (event) {
 
 });
 
-function successonload(position) {
+function onSuccess(position) {
     alert("success");
     lat = position.coords.latitude;
     lng = position.coords.longitude;
