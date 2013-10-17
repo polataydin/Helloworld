@@ -89,7 +89,6 @@
                 e.stopImmediatePropagation();
                 return;
             }
-            debugger;
             arr = jQuery.grep(parkings, function (n) {
                 return (n.Name == $("#parkingtext").val());
             });
@@ -140,7 +139,6 @@
                     XMLHttpRequest.setRequestHeader("Accept", "application/json");
                 },
                 success: function (data) {//On Successfull service call    
-                    debugger;
                     alert("Kaydınız alınmıştır");
                     $('body').unblock();
 

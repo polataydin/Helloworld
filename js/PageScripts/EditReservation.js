@@ -1,6 +1,6 @@
 ﻿
 $(document).bind("pageinit", function (event) {
-    debugger;
+
     var querystring = getUrlVars(decodeURIComponent(window.location.href));
     type = querystring["type"];
     Reservation = querystring["Rezervation"];

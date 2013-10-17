@@ -1,6 +1,5 @@
 ﻿
 function dateToWcf(input) {
-    debugger;
     if (input == null || input == undefined || input == "" || input == " ") {
         return;
     }
@@ -30,6 +29,7 @@ function dateWithoutTimeToWcf(input) {
     if (isNaN(d)) return null;
     return '\/Date(' + d.getTime() + '-0000)\/';
 }
+
 function getUrlVars(url) {
     var vars = [], hash;
     var hashes = url.slice(window.location.href.indexOf('?') + 1).split('&');
@@ -44,7 +44,7 @@ function getUrlVars(url) {
 function stripQueryStringAndHashFromPath(url) {
     return url.split("?")[0].split("#")[0];
 }
-//''
+
 function ChangeWcfDateTime(ds) {
     var D, dtime, T, tz, off,
        dobj = ds.match(/(\d+)|([+-])|(\d{4})/g);
@@ -63,4 +63,35 @@ function ChangeWcfDateTime(ds) {
 function Formatting(inputFormat) {
     var d = new Date(inputFormat);
     return [d.getDate(), d.getMonth() + 1, d.getFullYear()].join('/');
+}
+
+function checkRequiredFields() {
+    var validated = true;
+    var reqTextBoxes = $("input[req]");
+
+    //check required fields
+    for (var i = 0; i < reqTextBoxes.length; i++) {
+        var myTxt = reqTextBoxes[i];
+        if ($(myTxt).attr("req") == "" || $(myTxt).attr("req") == "1") {
+            if ($(myTxt).val() == "") {
+                alert( $("label[for='"+$(myTxt).attr("id")+"']").text().replace("*","").replace(":","") + "için değer girmelisiniz");
+                validated = false;
+                return validated;
+            }
+        }
+    }
+
+    var reqDropDowns = $("select[req]");
+    for (var i = 0; i < reqDropDowns.length; i++) {
+        var myDrop = reqDropDowns[i];
+        if ($(myDrop).attr("req") == "" || $(myDrop).attr("req") == "1") {
+            if ($(myDrop).val() == "" || $(myDrop).val() == "-1" || $(myDrop).val() == "0") {
+                alert($("#" + $(myDrop).attr("id").replace("drop", "lbl")).text() + " icin bir deger girmelisiniz !");
+                validated = false;
+                return validated;
+            }
+        }
+    }
+
+    return validated;
 }

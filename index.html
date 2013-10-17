@@ -42,7 +42,6 @@
                         XMLHttpRequest.setRequestHeader("Accept", "application/json");
                     },
                     success: function (data) {//On Successfull service call  
-                        debugger;
                         $('body').unblock();
                         if (data.d[0] == true) {
                             localStorage.setItem("user", $("#username").val());
@@ -55,8 +54,7 @@
                             event.preventDefault();
                         }
                     },
-                    error: function (XMLHttpRequest, textStatus, errorThrown) {
-                        debugger;
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {             
                         $('body').unblock();
                         alert(XMLHttpRequest.responseJSON.Message);
                         event.stopPropagation();

@@ -1,15 +1,12 @@
 ﻿//burada document ready'e attach olunmasının sebebi wijmo grid'in pageinit eventinde bind edememesi.
 //mobil ortamda document ready tavsıye edılmıyor ama burada grid plugini kullanıdığından dolayı bu eventte yapılması gerekir.
 //diğer sayfalarda pageinit eventıne attach olundugunu goreceksınız.
-$(document).ready(function () {
-    debugger;
-    //we pass type parameter from Reservation.html to know which rezervation will be listed.
+
+var rezervations = [];
+
+$(document).bind("pageinit", function (event) {
     var querystring = getUrlVars(decodeURIComponent(window.location.href));
     type = querystring["type"];
-
-
-
-    /*#region GetReservation Information and create table*/
     $.ajax({
 
         type: "GET",
@@ -25,28 +22,7 @@ $(document).ready(function () {
         success: function (data) {//On Successfull service call   
 
             if (data.d.length > 0) {
-                var $thead = $('<thead />').appendTo($("#listtable"));
-                var $tr = $('<tr />').appendTo($thead);
-                var columns = ["Ad", "Rez. Başlangıç Tar.", "Rez. Bitiş Tar."];
-                for (var i = 0; i < columns.length; i++) {
-                    var $th = $('<th />').appendTo($tr);
-                    $th.text(columns[i]);
-                }
-                var $tbody = $('<tbody />').appendTo($("#listtable"));
-                for (var i = 0; i < data.d.length; i++) {
-                    var $trr = $('<tr />').appendTo($tbody);
-                    var $td = $('<td />').appendTo($trr);
-                    $td.text(data.d[i].Subject);
-                    var $td1 = $('<td />').appendTo($trr);
-                    $td1.text(data.d[i].ScheduledStart);
-                    var $td2 = $('<td />').appendTo($trr);
-                    $td2.text(data.d[i].ScheduledEnd);
-                }
-                $("#listtable").wijgrid(
-                    {
-                        allowPaging: true,
-                        pageSize: 7
-                    });
+                rezervations = data.d;
             }
 
         },
@@ -54,6 +30,32 @@ $(document).ready(function () {
 
         }
     });
+});
+$(document).ready(function () {
+    //we pass type parameter from Reservation.html to know which rezervation will be listed.
+    /*#region GetReservation Information and create table*/
+    var $thead = $('<thead />').appendTo($("#listtable"));
+    var $tr = $('<tr />').appendTo($thead);
+    var columns = ["Ad", "Rez. Başlangıç Tar.", "Rez. Bitiş Tar."];
+    for (var i = 0; i < columns.length; i++) {
+        var $th = $('<th />').appendTo($tr);
+        $th.text(columns[i]);
+    }
+    var $tbody = $('<tbody />').appendTo($("#listtable"));
+    for (var i = 0; i < rezervations.length; i++) {
+        var $trr = $('<tr />').appendTo($tbody);
+        var $td = $('<td />').appendTo($trr);
+        $td.text(rezervations[i].Subject);
+        var $td1 = $('<td />').appendTo($trr);
+        $td1.text(rezervations[i].ScheduledStart);
+        var $td2 = $('<td />').appendTo($trr);
+        $td2.text(rezervations[i].ScheduledEnd);
+    }
+    $("#listtable").wijgrid(
+        {
+            allowPaging: true,
+            pageSize: 7
+        });
 
     /*#endregion GetReservation Information and create table*/
 
@@ -76,8 +78,7 @@ $(document).ready(function () {
 
     $("#listtable tr").bind("click", function (event) {
       
-        debugger;
-        window.location = "EditReservation.html?type=" + type + "&Rezervation=" + $(this).find("td")[0].innerText;
+       window.location = "EditReservation.html?type=" + type + "&Rezervation=" + $(this).find("td")[0].innerText;
     });
 });
 

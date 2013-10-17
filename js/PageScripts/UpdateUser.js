@@ -19,8 +19,7 @@
             },
             success: function (data) {//On Successfull service call   
                 if (data.d.length > 0) {
-                    debugger;
-                    $("#tckn").val(data.d[0].GovernmentId);
+                     $("#tckn").val(data.d[0].GovernmentId);
                     $("#name").val(data.d[0].FirstName);
                     $("#surname").val(data.d[0].LastName);
                     $("#mobilephone").val(data.d[0].MobilePhone);
@@ -36,7 +35,6 @@
 
     /*#region Save Button click*/
     $("#save").click(function (e) {
-        debugger;
         var CustomerInfo = {
 
             FirstName: $("#name").val(),

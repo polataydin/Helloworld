@@ -3,14 +3,19 @@ var markers = [];
 
 
 $(document).bind("pageinit", function (event) {
-
+  
+    //eğer dialoglardan geliyorsa onload daki kodları yapmasına gerek yok.
+    if (event.target.id != "") {
+        return;
+    }
     //if (localStorage.getItem("userguid") == null) {
     //    alert("Login hatası oluştu , lütfen uygulamınızın cache değerlerini siliniz.");
     //    event.stopImmediatePropagation();
     //    return;
     //}
+
     if (navigator.geolocation) {
-  
+
         if (navigator.geolocation) {
             var options = { timeout: 5000, maximumAge: 0, enableHighAccuracy: true };
             navigator.geolocation.getCurrentPosition(onSuccess, onError, options);
@@ -35,8 +40,86 @@ $(document).bind("pageinit", function (event) {
         e.stopImmediatePropagation();
     });
 
+    /*#region Save Click*/
+    $("#save").click(function (e) {     
+        var canPostBack = true;
+        canPostBack = checkRequiredFields();
 
+        if (canPostBack == false) {
+            e.preventDefault();
 
+            return false;
+        }
+
+        arr = jQuery.grep(JSON.parse(localStorage["parkings"]), function (n) {
+            return (n.Name == $("#parkingtext").val());
+        });
+        res = jQuery.grep(JSON.parse(localStorage["cities"]), function (n) {
+            return (n.Name == $("#citytext").val());
+        });
+
+        //lookups
+        var rezervationslookups = {
+
+            trd_contactid: {
+                Id: localStorage.getItem("userguid"),
+                LogicalName: "contact"
+            },
+            trd_parkpointid: {
+                Id: arr[0].Guid,
+                LogicalName: "trd_parkinginfo"
+            },
+
+        };
+        //optionsets
+        var rezervationsoptionsets = {
+
+            trd_reservationtype: {
+                Value: 167440000
+            }
+
+        };
+        //CrmFields
+        var rezervations = {
+
+            ScheduledStart: dateToWcf($("#startdate").val().replace(/(\d{2})\.(\d{2})\.(\d{4})/, '$3-$2-$1')),
+            ScheduledEnd: dateToWcf($("#enddate").val().replace(/(\d{2})\.(\d{2})\.(\d{4})/, '$3-$2-$1'))
+
+        };
+
+        $.support.cors = true;
+        $.ajax({
+
+            type: "GET",
+            contentType: "application/json;charset=utf-8",
+            datatype: "json",
+            url: "http://212.109.96.121:5556/Mobile/MobilizmService.svc/CreateRezervation",
+            async: true,
+            data: { rezervations: JSON.stringify(rezervations), rezervationslookups: JSON.stringify(rezervationslookups), rezervationsoptionsets: JSON.stringify(rezervationsoptionsets), origin: 2, ResourceId: res[0].Guid },
+            cache: false,
+            processData: true,
+            beforeSend: function (XMLHttpRequest) {
+                $.blockUI({
+                    message: '<h4> İşleminiz yapılıyor...</h4>',
+                    css: { border: '3px solid #a00' }
+                });
+                XMLHttpRequest.setRequestHeader("Accept", "application/json");
+            },
+            success: function (data) {//On Successfull service call    
+                alert("Kaydınız alınmıştır");
+                $('body').unblock();
+
+                $.mobile.hidePageLoadingMsg();
+                e.stopImmediatePropagation();
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                $('body').unblock();
+                alert(XMLHttpRequest.responseJSON.Message);
+                e.stopImmediatePropagation();
+            }
+        });
+    });
+    /*#endregion Save Click*/
 });
 
 $(document).delegate('#dialog1', 'pagebeforeshow', function (event) {
@@ -203,17 +286,15 @@ $(document).delegate('#dialog2', 'pagebeforeshow', function (event) {
         $("#dialog2").dialog("close");
     });
 });
-
-
 $(document).delegate('#dialog3', 'pageshow', function (event) {
-    alert("harita onload");
-    try{
+
+    try {
         var info_window = new google.maps.InfoWindow();
     }
     catch (err) {
-        alert(err.message);
+        alert(err.message + "new");
     }
-    alert("infowindow tanımlandı");
+
     var lookuparray = [];
     var service;
     var latlng = new google.maps.LatLng(lat, lng);
@@ -332,7 +413,6 @@ function onError(error) {
            'message: ' + error.message + '\n');
 
 }
-
 function setmap(name) {
 
     $("#parkingtext").val(name);
