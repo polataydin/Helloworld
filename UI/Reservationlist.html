@@ -3,30 +3,28 @@
 <head>
     <title>Mobilizm</title>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="../css/Mobilizm.css" rel="stylesheet" />
+
+    <link href="../css/ui.jqgridmobile.css" rel="stylesheet" />
     <link href="../css/jquery.mobile.structure-1.3.2.min.css" rel="stylesheet" />
-    <link href="../css/jquery.wijmo-pro.3.20132.15.css" rel="stylesheet" />
     <link href="../css/Overriddingjquerymobile.css" rel="stylesheet" />
 
-    <script src="../js/jquery.js"></script>
-    <script src="../js/JSON.js"></script>
-    <script src="../js/jquery.mobile-1.3.2.js"></script>
-    <script src="../js/wijmo-open.js"></script>
-    <script src="../js/wijmo-pro.js"></script>
-    <script src="../js/GeneralFunctions.js"></script>
-    <script src="../js/PageScripts/Reservationlist.js"></script>
-
+    
 </head>
 <body>
-    <div data-role="page" >
+    <div data-role="page" data-theme="d">
         <div data-theme="d" data-role="header">
             <h3>Mobilizm</h3>
         </div>
-        <div data-role="content" >
-            <table id="listtable" class="mgrid" data-theme="d"></table>
+        <div data-role="content">
+
         </div>
+        <table id='grid' class="mgrid"></table>
+        <div id='pager'></div>
+
+        
+
         <div data-role="footer" data-position="fixed">
             <div data-role="navbar" data-iconpos="top">
                 <ul>
@@ -35,9 +33,19 @@
                     <li><a href="UpdateUser.html" data-icon="gear" class="ui-btn-active" data-ajax="false">Hesabım</a></li>
                 </ul>
             </div>
-
         </div>
     </div>
 
 </body>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/JSON.js"></script>
+
+    <script src="../js/grid.locale-en.js"></script>
+    <script src="../js/jQGrid.js"></script>
+    <script src="../js/jquery.mobile-1.3.2.js"></script>
+
+    <script src="../js/GeneralFunctions.js"></script>
+    <script src="../js/PageScripts/Reservationlist.js"></script>
+    
 </html>
+

@@ -1,84 +1,74 @@
-﻿//burada document ready'e attach olunmasının sebebi wijmo grid'in pageinit eventinde bind edememesi.
-//mobil ortamda document ready tavsıye edılmıyor ama burada grid plugini kullanıdığından dolayı bu eventte yapılması gerekir.
-//diğer sayfalarda pageinit eventıne attach olundugunu goreceksınız.
-
+﻿var querystring = getUrlVars(decodeURIComponent(window.location.href));
+type = querystring["type"];
 var rezervations = [];
+$.ajax({
 
-$(document).bind("pageinit", function (event) {
-    var querystring = getUrlVars(decodeURIComponent(window.location.href));
-    type = querystring["type"];
-    $.ajax({
+    type: "GET",
+    contentType: "application/json;charset=utf-8",
+    datatype: "json",
+    url: "http://212.109.96.121:5556/Mobile/MobilizmService.svc/GetRezervations",
+    async: false,
+    data: { type: type, ContactId: localStorage.getItem("userguid") },
+    cache: false,
+    beforeSend: function (XMLHttpRequest) {
+        XMLHttpRequest.setRequestHeader("Accept", "application/json");
+    },
+    success: function (data) {//On Successfull service call   
 
-        type: "GET",
-        contentType: "application/json;charset=utf-8",
-        datatype: "json",
-        url: "http://212.109.96.121:5556/Mobile/MobilizmService.svc/GetRezervations",
-        async: false,
-        data: { type: type, ContactId: localStorage.getItem("userguid") },
-        cache: false,
-        beforeSend: function (XMLHttpRequest) {
-            XMLHttpRequest.setRequestHeader("Accept", "application/json");
-        },
-        success: function (data) {//On Successfull service call   
-
-            if (data.d.length > 0) {
-                rezervations = data.d;
-            }
-
-        },
-        error: function (XMLHttpRequest, textStatus, errorThrown) {
-
+        if (data.d.length > 0) {
+            rezervations = data.d;
         }
-    });
-});
-$(document).ready(function () {
-    //we pass type parameter from Reservation.html to know which rezervation will be listed.
-    /*#region GetReservation Information and create table*/
-    var $thead = $('<thead />').appendTo($("#listtable"));
-    var $tr = $('<tr />').appendTo($thead);
-    var columns = ["Ad", "Rez. Başlangıç Tar.", "Rez. Bitiş Tar."];
-    for (var i = 0; i < columns.length; i++) {
-        var $th = $('<th />').appendTo($tr);
-        $th.text(columns[i]);
+
+    },
+    error: function (XMLHttpRequest, textStatus, errorThrown) {
+
     }
-    var $tbody = $('<tbody />').appendTo($("#listtable"));
-    for (var i = 0; i < rezervations.length; i++) {
-        var $trr = $('<tr />').appendTo($tbody);
-        var $td = $('<td />').appendTo($trr);
-        $td.text(rezervations[i].Subject);
-        var $td1 = $('<td />').appendTo($trr);
-        $td1.text(rezervations[i].ScheduledStart);
-        var $td2 = $('<td />').appendTo($trr);
-        $td2.text(rezervations[i].ScheduledEnd);
-    }
-    $("#listtable").wijgrid(
-        {
-            allowPaging: true,
-            pageSize: 7
-        });
 
-    /*#endregion GetReservation Information and create table*/
-
-
-    /*#region TouchStart and touchend events*/
-    //bu event table üzerindeki row'a tıkladıgımızda renginin değişmesini bıraktıgımızda eski halıne donmesını saglar
-    $(".mGrid tr").bind("touchstart", function (event) {
-        $(".mGrid tr").each(function () {
-            $(this).removeClass("active");
-        });
-        $(this).addClass("active");
-
-    });
-
-    $(".mGrid tr").bind("touchmove ", function (event) {
-        $(".mGrid tr").removeClass("active");
-
-    });
-    /*#endregion TouchStart and touchend events*/
-
-    $("#listtable tr").bind("click", function (event) {
-      
-       window.location = "EditReservation.html?type=" + type + "&Rezervation=" + $(this).find("td")[0].innerText;
-    });
 });
+
+//ui.jqgridmobile.css
+//line 55 override edildi.
+jQuery('#grid').jqGrid({
+    defaults : {
+        emptyrecords: "No records to view",
+    },
+    hoverrows: false,
+    "viewrecords": true,
+    "jsonReader": { "repeatitems": false, "subgrid": { "repeatitems": false } },
+    datatype: "local",
+    data: rezervations,
+    loadonce: true,
+    shrinkToFit: false,
+    gridview: true,
+    "rowNum": 5,
+    "height": 200,
+    "autowidth": true,
+    "sortname": "Subject",
+    "rowList": [7, 10],
+    colNames: ['Rezervasyon', 'Başlangıç', 'Bitiş'],
+    colModel: [
+        { name: 'Subject', index: 'Subject', key: true, },
+        { name: "ScheduledStart", "index": "ScheduledStart", "sorttype": "datetime", "formatter": "date", "formatoptions": { srcformat: 'd-m-Y H:i', newformat: 'n/j/Y H:i' } },
+        { name: "ScheduledEnd", "index": "ScheduledEnd", "sorttype": "datetime", "formatter": "date", "formatoptions": { srcformat: 'd-m-Y H:i', newformat: 'n/j/Y H:i' } },
+    ],
+
+    "scrollPaging": true,
+    onSelectRow: function (id) {
+        window.location = "EditReservation.html?type=" + type + "&Rezervation=" + id;
+    },
+    "loadError": function (xhr, status, err) {
+        try {
+
+            jQuery.jgrid.info_dialog(jQuery.jgrid.errors.errcap, '<div class="ui-state-error">' + xhr.responseText + '</div>', jQuery.jgrid.edit.bClose,
+            { buttonalign: 'right' });
+        } catch (e) {
+            alert(xhr.responseText);
+        }
+    },
+    "pager": "#pager",
+ 
+});
+
+
+
 

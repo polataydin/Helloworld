@@ -3,7 +3,7 @@ var markers = [];
 
 
 $(document).bind("pageinit", function (event) {
-  
+
     //eğer dialoglardan geliyorsa onload daki kodları yapmasına gerek yok.
     if (event.target.id != "") {
         return;
@@ -26,22 +26,34 @@ $(document).bind("pageinit", function (event) {
     $("#enddate").scroller(TurkishMobiscrollLocalization);
 
     $("#citylookup").hide();
-    $("#parkinglookup").css("visibility", "hidden");
+    $("#parkinglookup").hide();
 
+    $('#citytext').bind("change", function (e) {
+        $(this).val("");
+
+    });
     $('#citytext').click(function (e) {
 
-        $("#citylookup").click();
+        if ($("#startdate").val() == "" || $("#enddate").val() == "" || $("#parkingtext").val() == "") {
+            alert("araç seçimi için öncelikle başlangış,bitiş zamanlarını ve Mobilizm Noktasını seçmek zorundasınız");
+            return;
+        }
 
+        $("#citylookup").click();
         e.stopImmediatePropagation();
+
+
     });
     $('#parkingtext').click(function (e) {
 
+
         $("#parkinglookup").click();
         e.stopImmediatePropagation();
+
     });
 
     /*#region Save Click*/
-    $("#save").click(function (e) {     
+    $("#save").click(function (e) {
         var canPostBack = true;
         canPostBack = checkRequiredFields();
 
@@ -123,79 +135,74 @@ $(document).bind("pageinit", function (event) {
 });
 
 $(document).delegate('#dialog1', 'pagebeforeshow', function (event) {
+
+    arr = jQuery.grep(JSON.parse(localStorage["parkings"]), function (n) {
+        return (n.Name == $("#parkingtext").val());
+    });
+
     var lookuparray = [];
     var integer = 0;
     var count = null;
     /*#region Get Cities And Push it to the local storage*/
-    if (localStorage["cities"] == null || JSON.parse(localStorage["cities"]).length == 0) {
+ 
 
-        $("#citylist").empty();
-        while (true) {
+        $.ajax({
 
-            $.ajax({
+            type: "GET",
+            contentType: "application/json;charset=utf-8",
+            datatype: "json",
+            url: "http://212.109.96.121:5556/Mobile/MobilizmService.svc/GetEquipments",
+            async: false,
+            data: { ScheduledStart: JSON.stringify( dateToWcf($("#startdate").val().replace(/(\d{2})\.(\d{2})\.(\d{4})/, '$3-$2-$1'))),ScheduledEnd: JSON.stringify(  dateToWcf($("#enddate").val().replace(/(\d{2})\.(\d{2})\.(\d{4})/, '$3-$2-$1'))), ParkingPoint: arr[0].Guid },
+            cache: false,
+            processData: true,
+            beforeSend: function (XMLHttpRequest) {
+                XMLHttpRequest.setRequestHeader("Accept", "application/json");
+            },
+            success: function (data) {//On Successfull service call   
+                integer = parseInt(integer) + 1;
+                count = data.d.length;
+                if (data.d.length > 0) {
+                    for (var i = 0; i < data.d.length; i++) {
+                        // Enhance new listview element      
 
-                type: "GET",
-                contentType: "application/json;charset=utf-8",
-                datatype: "json",
-                url: "http://212.109.96.121:5556/Mobile/MobilizmService.svc/GetEquipments",
-                async: false,
-                data: { page: integer },
-                cache: false,
-                processData: true,
-                beforeSend: function (XMLHttpRequest) {
-                    XMLHttpRequest.setRequestHeader("Accept", "application/json");
-                },
-                success: function (data) {//On Successfull service call   
-                    integer = parseInt(integer) + 1;
-                    count = data.d.length;
-                    if (data.d.length > 0) {
-                        for (var i = 0; i < data.d.length; i++) {
-                            // Enhance new listview element      
+                        var $li = $('<li />').appendTo($("#citylist"));
 
-                            var $li = $('<li />').appendTo($("#citylist"));
+                        var $a = $('<a />').appendTo($li);
+                        $a.attr("href", "#");
+                        $a.addClass("clickhref");
+                        $a.text(data.d[i].Name);
+                        $("#citylist").listview('refresh');
 
-                            var $a = $('<a />').appendTo($li);
-                            $a.attr("href", "#");
-                            $a.addClass("clickhref");
-                            $a.text(data.d[i].Name);
-                            $("#citylist").listview('refresh');
-
-                            //lookupobject must Name And Guid Standart
-                            var lookup = {};
-                            lookup.Name = data.d[i].Name;
-                            lookup.Guid = data.d[i].Guid;
-                            lookuparray.push(lookup);
-                        }
+                        //lookupobject must Name And Guid Standart
+                        var lookup = {};
+                        lookup.Name = data.d[i].Name;
+                        lookup.Guid = data.d[i].Guid;
+                        lookuparray.push(lookup);
                     }
-                },
-                error: function (XMLHttpRequest, textStatus, errorThrown) {
-
                 }
-            });
-            if (count == 0 || count == null) {
-                localStorage["cities"] = JSON.stringify(lookuparray);
-                break;
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
 
             }
-        }
+        });    
 
-    }
-    else {
 
-        var storeditems = JSON.parse(localStorage["cities"]);
-        $("#citylist").empty();
-        for (var i = 0; i < storeditems.length; i++) {
-
-            var $li = $('<li />').appendTo($("#citylist"));
-
-            var $a = $('<a />').appendTo($li);
-            $a.attr("href", "#");
-            $a.addClass("clickhref");
-            $a.text(storeditems[i].Name);
-            $('#citylist').listview('refresh');
-        }
-    }
     /*#endregion Get Cities And Push it to the local storage*/
+
+    $("#citylist").empty();
+    for (var i = 0; i < lookuparray.length; i++) {
+
+        var $li = $('<li />').appendTo($("#citylist"));
+
+        var $a = $('<a />').appendTo($li);
+        $a.attr("href", "#");
+        $a.addClass("clickhref");
+        $a.text(lookuparray[i].Name);
+        $('#citylist').listview('refresh');
+    }
+
+
 
     $('.clickhref').click(function () {
         $("#citytext").val($(this)[0].innerText);
@@ -375,6 +382,8 @@ $(document).delegate('#dialog3', 'pageshow', function (event) {
         var marker = new google.maps.Marker({
             position: latlng,
             map: map,
+
+            icon : "../css/images/map_icon_mobilizm_here.png"
         });
         //calculating two distance by kilometer
         var x = google.maps.geometry.spherical.computeDistanceBetween(mylatlng, latlng) / 1000;

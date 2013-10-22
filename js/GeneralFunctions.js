@@ -29,6 +29,15 @@ function dateWithoutTimeToWcf(input) {
     if (isNaN(d)) return null;
     return '\/Date(' + d.getTime() + '-0000)\/';
 }
+function GeneraldateTimeToWcf(input) {
+
+    if (input == null || input == undefined || input == "" || input == " ") {
+        return;
+    }
+
+    if (isNaN(input)) return null;
+    return '\/Date(' + input.getTime() + '-0000)\/';
+}
 
 function getUrlVars(url) {
     var vars = [], hash;
